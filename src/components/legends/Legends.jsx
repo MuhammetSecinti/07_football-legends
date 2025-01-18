@@ -1,22 +1,25 @@
-import { Card, Col, Container, Form, Row } from "react-bootstrap";
+import { Container, Form, Row } from "react-bootstrap";
 import { data } from "../../helpers/data";
-import { useState } from "react";
 import LegendsCard from "./LegendsCard";
-
-
+import { useState } from "react";
 
 const Legends = () => {
-  
+  const [search, setSearch] = useState("");
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+  const filteredData = data.filter((item) =>
+    item.name.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase())
+  );
 
   return (
     <Container className="text-center">
-      <Form.Control type="search" placeholder="" />
+      <Form.Control type="search" placeholder="" onChange={handleChange} />
       <Container>
         <Row>
-          {data.map((legends) => (
-           
-              <LegendsCard legends = {legends} />
-           
+          {filteredData.map((legends) => (
+            <LegendsCard key={legends.id} legends={legends} />
           ))}
         </Row>
       </Container>
