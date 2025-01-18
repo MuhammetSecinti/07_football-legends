@@ -6,9 +6,12 @@ const LegendsCard = ({ legends }) => {
 
   return (
     <Col>
-      <Card style={{ width: "18rem" }} onClick={() => setShow(!show)}>
+      <Card className="player-card m-2" role="button" style={{ width: "18rem" }} onClick={() => setShow(!show)}>
         {!show ? (
-          <Card.Img variant="top" src={legends.img} />
+          <Card.Img variant="top" src={legends.img} 
+          title={legends.name}
+          alt={legends.name}
+          />
         ) : (
           <>
             <Card.Header>
